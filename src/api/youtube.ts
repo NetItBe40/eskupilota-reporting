@@ -1,5 +1,28 @@
+// Configuration requise :
+// 1. Créer un projet sur Google Cloud Console
+// 2. Activer YouTube Data API v3 et YouTube Analytics API
+// 3. Configurer OAuth 2.0 avec les scopes :
+//    - youtube.readonly
+//    - youtube.analytics.readonly
+// 4. Obtenir les credentials :
+//    - CLIENT_ID
+//    - CLIENT_SECRET
+//    - API_KEY
+
+// TODO: Remplacer par vos credentials
+const YOUTUBE_CONFIG = {
+  CLIENT_ID: process.env.YOUTUBE_CLIENT_ID || '',
+  CLIENT_SECRET: process.env.YOUTUBE_CLIENT_SECRET || '',
+  API_KEY: process.env.YOUTUBE_API_KEY || '',
+};
+
 // Simule des appels API - À remplacer par de vraies requêtes YouTube API
 export const fetchYouTubeStats = async () => {
+  // Vérification des credentials
+  if (!YOUTUBE_CONFIG.CLIENT_ID || !YOUTUBE_CONFIG.API_KEY) {
+    console.warn('YouTube credentials manquants. Utilisation des données de test.');
+  }
+  
   // Simuler un délai réseau
   await new Promise(resolve => setTimeout(resolve, 1000));
   
@@ -12,6 +35,10 @@ export const fetchYouTubeStats = async () => {
 };
 
 export const fetchYouTubeVideos = async () => {
+  if (!YOUTUBE_CONFIG.CLIENT_ID || !YOUTUBE_CONFIG.API_KEY) {
+    console.warn('YouTube credentials manquants. Utilisation des données de test.');
+  }
+  
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   return [{
@@ -25,6 +52,10 @@ export const fetchYouTubeVideos = async () => {
 };
 
 export const fetchViewsData = async () => {
+  if (!YOUTUBE_CONFIG.CLIENT_ID || !YOUTUBE_CONFIG.API_KEY) {
+    console.warn('YouTube credentials manquants. Utilisation des données de test.');
+  }
+  
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   return Array.from({ length: 30 }, (_, i) => ({
@@ -34,6 +65,10 @@ export const fetchViewsData = async () => {
 };
 
 export const fetchDeviceData = async () => {
+  if (!YOUTUBE_CONFIG.CLIENT_ID || !YOUTUBE_CONFIG.API_KEY) {
+    console.warn('YouTube credentials manquants. Utilisation des données de test.');
+  }
+  
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   return [
