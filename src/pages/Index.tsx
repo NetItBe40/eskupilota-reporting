@@ -3,6 +3,7 @@ import { Eye, ThumbsUp, MessageSquare, TrendingUp } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { VideoTable } from "@/components/VideoTable";
 import { ViewsChart } from "@/components/ViewsChart";
+import { DeviceChart } from "@/components/DeviceChart";
 import { PeriodSelect } from "@/components/PeriodSelect";
 
 // Données de test - À remplacer par l'intégration de l'API YouTube
@@ -28,6 +29,12 @@ const mockData = {
     date: new Date(Date.now() - i * 24 * 60 * 60 * 1000).toLocaleDateString(),
     views: Math.floor(Math.random() * 10000),
   })).reverse(),
+  deviceData: [
+    { name: "Mobile", value: 45, color: "#FF0000" },
+    { name: "Desktop", value: 35, color: "#065FD4" },
+    { name: "Tablette", value: 15, color: "#4CAF50" },
+    { name: "TV", value: 5, color: "#FF9800" },
+  ],
 };
 
 export default function Index() {
@@ -73,9 +80,16 @@ export default function Index() {
           />
         </div>
 
-        <div className="rounded-lg border bg-white p-6">
-          <h2 className="mb-4 text-lg font-semibold">Évolution des vues</h2>
-          <ViewsChart data={mockData.viewsData} isLoading={isLoading} />
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-lg font-semibold">Évolution des vues</h2>
+            <ViewsChart data={mockData.viewsData} isLoading={isLoading} />
+          </div>
+          
+          <div className="rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-lg font-semibold">Répartition par appareil</h2>
+            <DeviceChart data={mockData.deviceData} isLoading={isLoading} />
+          </div>
         </div>
 
         <div className="rounded-lg border bg-white p-6">
