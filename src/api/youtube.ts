@@ -11,9 +11,9 @@
 
 // TODO: Remplacer par vos credentials
 const YOUTUBE_CONFIG = {
-  CLIENT_ID: process.env.YOUTUBE_CLIENT_ID || '',
-  CLIENT_SECRET: process.env.YOUTUBE_CLIENT_SECRET || '',
-  API_KEY: process.env.YOUTUBE_API_KEY || '',
+  CLIENT_ID: import.meta.env.VITE_YOUTUBE_CLIENT_ID || '',
+  CLIENT_SECRET: import.meta.env.VITE_YOUTUBE_CLIENT_SECRET || '',
+  API_KEY: import.meta.env.VITE_YOUTUBE_API_KEY || '',
 };
 
 // Simule des appels API - À remplacer par de vraies requêtes YouTube API
