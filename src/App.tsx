@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import Index from "./pages/Index";
 import Facebook from "./pages/Facebook";
+import Instagram from "./pages/Instagram";
 import Matomo from "./pages/Matomo";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/facebook" element={<Facebook />} />
+                <Route path="/instagram" element={<Instagram />} />
                 <Route path="/matomo" element={<Matomo />} />
               </Routes>
             </main>

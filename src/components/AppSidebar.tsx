@@ -1,4 +1,4 @@
-import { Youtube, Facebook, BarChart } from "lucide-react";
+import { Youtube, Facebook, Instagram, BarChart } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 import {
   Sidebar,
@@ -21,6 +21,11 @@ const items = [
     title: "Facebook Analytics",
     path: "/facebook",
     icon: Facebook,
+  },
+  {
+    title: "Instagram Analytics",
+    path: "/instagram",
+    icon: Instagram,
   },
   {
     title: "Matomo Analytics",
