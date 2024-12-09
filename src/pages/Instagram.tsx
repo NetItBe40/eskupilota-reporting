@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Share2, MessageCircle, TrendingUp, Instagram } from "lucide-react";
+import { Heart, Share2, MessageCircle, TrendingUp, Instagram as InstagramIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { StatCard } from "@/components/StatCard";
 import { PeriodSelect } from "@/components/PeriodSelect";
@@ -96,7 +96,7 @@ const fetchRecentComments = async () => {
   ];
 };
 
-export default function Instagram() {
+export default function InstagramAnalytics() {
   const [period, setPeriod] = useState("1m");
 
   const { data: stats, isLoading } = useQuery({
@@ -136,23 +136,23 @@ export default function Instagram() {
           <StatCard
             title="Abonnés"
             value={stats?.followers.toLocaleString() ?? '-'}
-            icon={<Instagram className="h-4 w-4 text-pink-600" />}
+            icon={<div className="h-4 w-4 text-pink-600"><InstagramIcon /></div>}
             trend={stats?.followersTrend}
           />
           <StatCard
             title="Portée"
             value={stats?.reach.toLocaleString() ?? '-'}
-            icon={<Share2 className="h-4 w-4 text-pink-600" />}
+            icon={<div className="h-4 w-4 text-pink-600"><Share2 /></div>}
           />
           <StatCard
             title="Engagement"
             value={stats?.engagement ?? '-'}
-            icon={<TrendingUp className="h-4 w-4 text-pink-600" />}
+            icon={<div className="h-4 w-4 text-pink-600"><TrendingUp /></div>}
           />
           <StatCard
             title="Interactions"
             value={stats?.interactions.toLocaleString() ?? '-'}
-            icon={<MessageCircle className="h-4 w-4 text-pink-600" />}
+            icon={<div className="h-4 w-4 text-pink-600"><MessageCircle /></div>}
           />
         </div>
 
