@@ -4,8 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import { StatCard } from "@/components/StatCard";
 import { PeriodSelect } from "@/components/PeriodSelect";
 import { ViewsChart } from "@/components/ViewsChart";
+import { ContentTypeTable } from "@/components/ContentTypeTable";
+import { CommentsList } from "@/components/CommentsList";
 
-// Simulation des données Facebook
 const fetchFacebookStats = async () => ({
   followers: 15420,
   engagement: "12.3%",
@@ -31,6 +32,70 @@ const fetchInteractionsData = async () => {
   }));
 };
 
+const fetchTopContent = async () => {
+  return [
+    {
+      type: "Vidéo",
+      title: "Notre nouveau produit en action",
+      engagement: "8.5%",
+      reach: 25000
+    },
+    {
+      type: "Photo",
+      title: "L'équipe au complet",
+      engagement: "6.2%",
+      reach: 18000
+    },
+    {
+      type: "Lien",
+      title: "Article : 10 conseils pour...",
+      engagement: "4.8%",
+      reach: 15000
+    },
+    {
+      type: "Status",
+      title: "Grande annonce à venir !",
+      engagement: "7.1%",
+      reach: 20000
+    }
+  ];
+};
+
+const fetchRecentComments = async () => {
+  return [
+    {
+      id: "1",
+      author: {
+        name: "Marie Dupont",
+        avatar: "/placeholder.svg"
+      },
+      content: "Super initiative ! J'ai hâte d'en savoir plus.",
+      date: "Il y a 2h",
+      post: "Grande annonce à venir !"
+    },
+    {
+      id: "2",
+      author: {
+        name: "Thomas Martin",
+        avatar: "/placeholder.svg"
+      },
+      content: "Très intéressant, merci pour le partage !",
+      date: "Il y a 5h",
+      post: "Article : 10 conseils pour..."
+    },
+    {
+      id: "3",
+      author: {
+        name: "Sophie Bernard",
+        avatar: "/placeholder.svg"
+      },
+      content: "Belle présentation du produit !",
+      date: "Il y a 8h",
+      post: "Notre nouveau produit en action"
+    }
+  ];
+};
+
 export default function Facebook() {
   const [period, setPeriod] = useState("3m");
 
@@ -47,6 +112,16 @@ export default function Facebook() {
   const { data: interactionsData, isLoading: isInteractionsLoading } = useQuery({
     queryKey: ['interactions-data', period],
     queryFn: fetchInteractionsData
+  });
+
+  const { data: topContent, isLoading: isTopContentLoading } = useQuery({
+    queryKey: ['top-content', period],
+    queryFn: fetchTopContent
+  });
+
+  const { data: recentComments, isLoading: isCommentsLoading } = useQuery({
+    queryKey: ['recent-comments', period],
+    queryFn: fetchRecentComments
   });
 
   return (
@@ -90,6 +165,18 @@ export default function Facebook() {
           <div className="rounded-lg border bg-white p-6">
             <h2 className="mb-4 text-lg font-semibold">Évolution des interactions</h2>
             <ViewsChart data={interactionsData ?? []} isLoading={isInteractionsLoading} />
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-lg font-semibold">Top contenus par type</h2>
+            <ContentTypeTable data={topContent ?? []} isLoading={isTopContentLoading} />
+          </div>
+          
+          <div className="rounded-lg border bg-white p-6">
+            <h2 className="mb-4 text-lg font-semibold">Derniers commentaires</h2>
+            <CommentsList comments={recentComments ?? []} isLoading={isCommentsLoading} />
           </div>
         </div>
       </div>
