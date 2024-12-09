@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { StatCard } from "@/components/StatCard";
 import { PeriodSelect } from "@/components/PeriodSelect";
 import { ViewsChart } from "@/components/ViewsChart";
+import { PageViewsTable } from "@/components/PageViewsTable";
 
 // Simulation des données Matomo
 const fetchMatomoStats = async () => ({
@@ -33,6 +34,41 @@ const fetchVisitorTypesData = async () => {
   }));
 };
 
+const fetchTopPages = async () => {
+  return [
+    {
+      page: "/accueil",
+      views: 12500,
+      avgTimeOnPage: "2:45",
+      bounceRate: "28%"
+    },
+    {
+      page: "/produits",
+      views: 8900,
+      avgTimeOnPage: "3:15",
+      bounceRate: "32%"
+    },
+    {
+      page: "/contact",
+      views: 5600,
+      avgTimeOnPage: "1:50",
+      bounceRate: "45%"
+    },
+    {
+      page: "/blog",
+      views: 4200,
+      avgTimeOnPage: "4:20",
+      bounceRate: "25%"
+    },
+    {
+      page: "/a-propos",
+      views: 3100,
+      avgTimeOnPage: "2:30",
+      bounceRate: "38%"
+    }
+  ];
+};
+
 export default function Matomo() {
   const [period, setPeriod] = useState("3m");
 
@@ -49,6 +85,11 @@ export default function Matomo() {
   const { data: visitorTypesData, isLoading: isVisitorTypesLoading } = useQuery({
     queryKey: ['visitor-types-data', period],
     queryFn: fetchVisitorTypesData
+  });
+
+  const { data: topPages, isLoading: isTopPagesLoading } = useQuery({
+    queryKey: ['top-pages', period],
+    queryFn: fetchTopPages
   });
 
   return (
@@ -93,6 +134,11 @@ export default function Matomo() {
             <h2 className="mb-4 text-lg font-semibold">Visiteurs récurrents vs nouveaux</h2>
             <ViewsChart data={visitorTypesData ?? []} isLoading={isVisitorTypesLoading} />
           </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-6">
+          <h2 className="mb-4 text-lg font-semibold">Pages les plus consultées</h2>
+          <PageViewsTable data={topPages ?? []} isLoading={isTopPagesLoading} />
         </div>
       </div>
     </div>
