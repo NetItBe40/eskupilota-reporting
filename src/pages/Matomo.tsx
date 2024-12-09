@@ -70,7 +70,7 @@ const fetchTopPages = async () => {
 };
 
 export default function Matomo() {
-  const [period, setPeriod] = useState("3m");
+  const [period, setPeriod] = useState("1m");
 
   const { data: stats, isLoading } = useQuery({
     queryKey: ['matomo-stats', period],

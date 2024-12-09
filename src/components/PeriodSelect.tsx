@@ -18,6 +18,7 @@ export function PeriodSelect({ value, onValueChange }: PeriodSelectProps) {
         <SelectValue placeholder="Sélectionner une période" />
       </SelectTrigger>
       <SelectContent>
+        <SelectItem value="1m">1 mois</SelectItem>
         <SelectItem value="3m">3 derniers mois</SelectItem>
         <SelectItem value="12m">12 derniers mois</SelectItem>
         <SelectItem value="ytd">Année en cours</SelectItem>

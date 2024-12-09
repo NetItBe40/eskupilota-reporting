@@ -97,7 +97,7 @@ const fetchRecentComments = async () => {
 };
 
 export default function Facebook() {
-  const [period, setPeriod] = useState("3m");
+  const [period, setPeriod] = useState("1m");
 
   const { data: stats, isLoading } = useQuery({
     queryKey: ['facebook-stats', period],

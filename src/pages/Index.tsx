@@ -9,7 +9,7 @@ import { PeriodSelect } from "@/components/PeriodSelect";
 import { fetchYouTubeStats, fetchYouTubeVideos, fetchViewsData, fetchDeviceData } from "@/api/youtube";
 
 export default function Index() {
-  const [period, setPeriod] = useState("3m");
+  const [period, setPeriod] = useState("1m");
 
   const { data: stats, isLoading: isStatsLoading } = useQuery({
     queryKey: ['youtube-stats', period],
