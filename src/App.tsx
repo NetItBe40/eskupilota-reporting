@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Facebook from "./pages/Facebook";
 import Instagram from "./pages/Instagram";
 import Matomo from "./pages/Matomo";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
                 <Route path="/facebook" element={<Facebook />} />
                 <Route path="/instagram" element={<Instagram />} />
                 <Route path="/matomo" element={<Matomo />} />
+                <Route path="/settings" element={<Settings />} />
               </Routes>
             </main>
           </div>
